@@ -4,9 +4,9 @@ struct MusicSearchView: View {
     @Environment(\.dismiss) var dismiss
     @State private var searchText: String = ""
     @State private var suggestions: [Music] = [
-        Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: 0),
-        Music(id: UUID(), name: "Show das Poderosas", artist: "Anitta", votes: 0),
-        Music(id: UUID(), name: "Evidências", artist: "Chitãozinho & Xororó", votes: 0)
+        Music(name: "Pra Ver Se Cola", artist: "Larissa Manoela", imageURL: nil, votes: 0),
+        Music(name: "Pra Ver Se Cola", artist: "Larissa Manoela", imageURL: nil, votes: 0),
+        Music(name: "Pra Ver Se Cola", artist: "Larissa Manoela", imageURL: nil, votes: 0)
     ]
     
     var body: some View {

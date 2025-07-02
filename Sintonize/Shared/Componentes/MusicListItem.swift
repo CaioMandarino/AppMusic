@@ -34,5 +34,5 @@ struct MusicListItem: View {
 }
 
 #Preview {
-    MusicListItem(music: Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: 10), onVote: {})
-} 
+    MusicListItem(music: Music( name: "Pra Ver Se Cola", artist: "Larissa Manoela", imageURL: nil, votes: 10), onVote: {})
+}
