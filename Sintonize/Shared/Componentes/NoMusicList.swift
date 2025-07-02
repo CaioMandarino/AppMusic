@@ -15,7 +15,7 @@ struct NoMusicList: View {
             Image(systemName: "magnifyingglass.circle")
                 .resizable()
                 .frame(width: Global.fontSizeIconMedium, height: Global.fontSizeIconMedium)
-                .foregroundColor(Color("NewOrange"))
+                .foregroundColor(.newOrange)
             Text("Adicione músicas na lista da festa buscando na barra de pesquisa acima")
                 .foregroundColor(Color.gray)
                 .frame(width: UIScreen.main.bounds.width * Global.widthFramePercentage)

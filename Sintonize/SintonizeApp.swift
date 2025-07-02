@@ -12,7 +12,7 @@ struct SintonizeApp: App {
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .tint(Color("newOrange"))
+                .tint(.newOrange)
         }
     }
 }

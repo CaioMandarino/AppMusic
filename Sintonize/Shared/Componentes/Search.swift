@@ -16,7 +16,7 @@ struct Search: View {
         
         HStack() {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(Color("NewOrange"))
+                .foregroundColor(.newOrange)
             
             TextField(
                 "Adicione uma música na lista",
