@@ -14,8 +14,8 @@ struct NoMusicList: View {
         VStack{
             Image(systemName: "magnifyingglass.circle")
                 .resizable()
-                .frame(width: 60, height: 60)
-                .foregroundColor(Color("newOrange"))
+                .frame(width: Global.fontSizeIconMedium, height: Global.fontSizeIconMedium)
+                .foregroundColor(Color("NewOrange"))
             Text("Adicione músicas na lista da festa buscando na barra de pesquisa acima")
                 .foregroundColor(Color.gray)
                 .frame(width: UIScreen.main.bounds.width * Global.widthFramePercentage)

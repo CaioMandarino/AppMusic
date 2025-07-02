@@ -8,9 +8,9 @@ struct RoomView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Global.spacingSmall) {
             HStack {
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: Global.spacingSmall) {
                     Text(viewModel.room.name)
                         .font(.largeTitle).bold()
                     Text("Código da sala: \(viewModel.room.code)")
@@ -21,18 +21,17 @@ struct RoomView: View {
                 Button(action: { viewModel.showEndRoomAlert = true }) {
                     Image(systemName: "xmark.circle.fill")
                         .font(.title2)
-                        .foregroundColor(.accentColor)
+                        .foregroundColor(.newOrange)
                 }
             }
             .padding()
             Search(searchText: $viewModel.searchText)
-                .padding(.bottom, 8)
+                .padding(.bottom, Global.spacingMedium)
             if viewModel.room.musics.isEmpty {
-                VStack(spacing: 16) {
+                VStack(spacing: Global.spacingXLarge) {
                     Spacer()
                     Image(systemName: "magnifyingglass")
-                        .font(.system(size: 48))
-                        .foregroundColor(.accentColor)
+                        .font(.system(size: Global.fontSizeIconLarge))
                     Text("Adicione músicas à lista da festa buscando no barra de pesquisa acima")
                         .multilineTextAlignment(.center)
                         .foregroundColor(.gray)
@@ -41,14 +40,14 @@ struct RoomView: View {
                 }
             } else {
                 ScrollView {
-                    VStack(spacing: 12) {
+                    VStack(spacing: Global.spacingLarge) {
                         ForEach(viewModel.room.musics) { music in
                             MusicListItem(music: music) {
                                 viewModel.vote(music: music)
                             }
                         }
                     }
-                    .padding(.top, 8)
+                    .padding(.top, Global.spacingMedium)
                 }
             }
         }

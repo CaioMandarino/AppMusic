@@ -14,6 +14,7 @@ struct CreateRoomView: View {
                 Section(header: Text("Data da festa")) {
                     DatePicker("", selection: $date, displayedComponents: .date)
                         .datePickerStyle(.compact)
+                        .accentColor(.newOrange)
                 }
             }
             .navigationTitle("Criar Sala")

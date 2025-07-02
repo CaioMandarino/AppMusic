@@ -10,9 +10,9 @@ class RoomViewModel: ObservableObject {
         self.room = room
         if room.musics.isEmpty {
             self.room.musics = [
-                Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: 707),
-                Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: 208),
-                Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: 5)
+                Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: Global.exampleVotesHigh),
+                Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: Global.exampleVotesMedium),
+                Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: Global.exampleVotesLow)
             ]
         }
     }

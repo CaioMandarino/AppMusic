@@ -16,7 +16,7 @@ struct Search: View {
         
         HStack() {
             Image(systemName: "magnifyingglass")
-                .foregroundColor(Color("newOrange"))
+                .foregroundColor(Color("NewOrange"))
             
             TextField(
                 "Adicione uma música na lista",
@@ -24,11 +24,11 @@ struct Search: View {
             )
             
         }
-        .frame(width: UIScreen.main.bounds.width * 0.8)
-        .padding(.vertical, 8)
-        .padding(.horizontal, 22)
-        .background(Color.gray.opacity(0.3))
-        .cornerRadius(8)
+        .frame(width: UIScreen.main.bounds.width * Global.widthFramePercentage)
+        .padding(.vertical, Global.spacingMedium)
+        .padding(.horizontal, Global.paddingHorizontal)
+        .background(Color.gray.opacity(Global.backgroundOpacity))
+        .cornerRadius(Global.cornerRadiusSmall)
         .frame(maxWidth: .infinity, alignment: .center)
     }
         

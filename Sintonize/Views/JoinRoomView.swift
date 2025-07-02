@@ -6,8 +6,8 @@ struct JoinRoomView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 32) {
-                Spacer().frame(height: 32)
+            VStack(spacing: Global.spacingHuge) {
+                Spacer().frame(height: Global.spacingHuge)
                 Text("Entrar em uma sala existente?\nUse o código ou escaneie o QR Code para encontrar a sala!")
                     .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
@@ -16,7 +16,7 @@ struct JoinRoomView: View {
                     .keyboardType(.numberPad)
                     .padding()
                     .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10)
+                    .cornerRadius(Global.cornerRadiusMedium)
                     .padding(.horizontal)
                 Text("OU")
                     .font(.caption)
@@ -30,7 +30,7 @@ struct JoinRoomView: View {
                     .frame(maxWidth: .infinity)
                     .foregroundColor(.newOrange)
                     .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10)
+                    .cornerRadius(Global.cornerRadiusMedium)
                 }
                 .padding(.horizontal)
                 Button(action: { dismiss() }) {
@@ -40,7 +40,7 @@ struct JoinRoomView: View {
                         .padding()
                         .background(Color.newOrange)
                         .foregroundColor(.white)
-                        .cornerRadius(12)
+                        .cornerRadius(Global.cornerRadiusLarge)
                 }
                 
                 .padding(.horizontal)

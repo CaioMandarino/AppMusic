@@ -6,7 +6,7 @@ struct MusicListItem: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: Global.spacingSmall) {
                 Text(music.name)
                     .font(.headline)
                 Text(music.artist)
@@ -14,7 +14,7 @@ struct MusicListItem: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-            HStack(spacing: 6) {
+            HStack(spacing: Global.hStackSpacing) {
                 Text("\(music.votes)")
                     .font(.subheadline)
                 Button(action: onVote) {
@@ -25,10 +25,11 @@ struct MusicListItem: View {
                 .buttonStyle(.plain)
             }
         }
-        .padding(.vertical, 8)
+        .frame(width: 330)
+        .padding(.vertical, Global.spacingMedium)
         .padding(.horizontal)
         .background(Color(.secondarySystemBackground))
-        .cornerRadius(12)
+        .cornerRadius(Global.cornerRadiusLarge)
     }
 }
 

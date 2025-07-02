@@ -20,7 +20,7 @@ struct MusicaSala: View {
 //                    .padding(.top)
                 
                 Search(searchText: $searchText)
-                .padding(.top, 46)
+                .padding(.top, Global.spacingSearchTop)
 
                 Tittle(text: "Lista de músicas")
                 
@@ -33,7 +33,7 @@ struct MusicaSala: View {
                         ToolbarItem(placement: .principal) {
                             HStack{
                                 Text("15 da Raquel")
-                                    .font(.system(size: 32, weight: .bold))
+                                    .font(.system(size: Global.fontSizeTitle, weight: .bold))
                                 
                             }
                         }

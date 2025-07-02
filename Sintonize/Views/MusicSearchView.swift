@@ -31,7 +31,7 @@ struct MusicSearchView: View {
                                     .font(.title2)
                             }
                         }
-                        .padding(.vertical, 4)
+                        .padding(.vertical, Global.spacingSmall)
                     }
                 }
                 .listStyle(.plain)

@@ -11,14 +11,14 @@ struct HomeView: View {
             ZStack {
                 Color(.systemBackground)
                     .ignoresSafeArea()
-                VStack(alignment: .leading, spacing: 0) {
-                    VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: Global.spacingMedium) {
+                    VStack(alignment: .leading, spacing: Global.spacingMedium) {
                         Text("Sala nova ou já rolando? Bora montar a playlist da festa com a galera!")
                             .font(.headline)
                             .foregroundColor(.white)
-                            .padding(.top, 32)
+                            .padding(.top, Global.paddingTopTitle)
                             .padding(.horizontal)
-                        HStack(spacing: 16) {
+                        HStack(spacing: Global.spacingXLarge) {
                             Button(action: { showCreateRoom = true }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
@@ -29,7 +29,7 @@ struct HomeView: View {
                                 .padding()
                                 .background(Color.newOrange)
                                 .foregroundColor(.white)
-                                .cornerRadius(12)
+                                .cornerRadius(Global.cornerRadiusLarge)
                             }
                             Button(action: { showJoinRoom = true }) {
                                 HStack {
@@ -41,19 +41,19 @@ struct HomeView: View {
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
                                 .foregroundColor(.newOrange)
-                                .cornerRadius(12)
+                                .cornerRadius(Global.cornerRadiusLarge)
                             }
                         }
                         .padding(.horizontal)
                     }
-                    .padding(.bottom, 24)
-                    VStack(alignment: .leading, spacing: 0) {
+                    .padding(.bottom, Global.spacingXXLarge)
+                    VStack(alignment: .leading, spacing: Global.spacingSmall) {
                         Text("Histórico")
                             .font(.title2)
                             .bold()
                             .foregroundColor(.white)
                             .padding(.horizontal)
-                            .padding(.top, 8)
+                            .padding(.top, Global.spacingMedium)
                         ForEach(viewModel.rooms) { room in
                             Button(action: { selectedRoom = room }) {
                                 HStack {
@@ -71,11 +71,11 @@ struct HomeView: View {
                                 }
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
-                                .cornerRadius(10)
+                                .cornerRadius(Global.cornerRadiusMedium)
                             }
                             .buttonStyle(.plain)
                             .padding(.horizontal)
-                            .padding(.vertical, 2)
+                            .padding(.vertical, Global.spacingSmall)
                         }
                     }
                     Spacer()

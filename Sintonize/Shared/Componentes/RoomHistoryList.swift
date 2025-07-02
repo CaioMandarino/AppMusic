@@ -5,12 +5,12 @@ struct RoomHistoryList: View {
     let onSelect: (Room) -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading, spacing: Global.spacingSmall) {
             Text("Histórico")
                 .font(.title2)
                 .bold()
                 .padding(.horizontal)
-                .padding(.top, 8)
+                .padding(.top, Global.spacingMedium)
             ForEach(rooms) { room in
                 Button(action: { onSelect(room) }) {
                     HStack {
@@ -27,11 +27,11 @@ struct RoomHistoryList: View {
                     }
                     .padding()
                     .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10)
+                    .cornerRadius(Global.cornerRadiusMedium)
                 }
                 .buttonStyle(.plain)
                 .padding(.horizontal)
-                .padding(.vertical, 2)
+                .padding(.vertical, Global.spacingSmall)
             }
         }
     }
@@ -39,7 +39,7 @@ struct RoomHistoryList: View {
 
 #Preview {
     RoomHistoryList(rooms: [
-        Room(id: UUID(), name: "Na Praia", date: Date(), code: "12345", musics: []),
-        Room(id: UUID(), name: "15 da Raquel", date: Date(), code: "54321", musics: [])
+        Room(id: UUID(), name: "Na Praia", date: Date(), code: Global.exampleRoomCode1, musics: []),
+        Room(id: UUID(), name: "15 da Raquel", date: Date(), code: Global.exampleRoomCode2, musics: [])
     ], onSelect: { _ in })
 } 
