@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var parties: FetchedResults<Party>
     @StateObject private var viewModel = HomeViewModel()
     @State private var showCreateRoom = false
     @State private var showJoinRoom = false
