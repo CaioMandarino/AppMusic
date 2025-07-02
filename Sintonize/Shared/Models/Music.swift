@@ -1,8 +1,9 @@
 import Foundation
 
 struct Music: Identifiable, Equatable {
-    let id: UUID
-    var name: String
-    var artist: String
-    var votes: Int
+    let id = UUID()
+    let name: String
+    let artist: String
+    let imageURL: URL?
+    var votes: Int = 0
 } 

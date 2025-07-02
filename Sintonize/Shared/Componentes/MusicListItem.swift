@@ -32,3 +32,9 @@ struct MusicListItem: View {
         .cornerRadius(Global.cornerRadiusLarge)
     }
 }
+
+
+//#Preview {
+//    MusicListItem(music: Music( name: "Pra Ver Se Cola", artist: "Larissa Manoela", imageURL: nil, votes: 10), onVote: {})
+//}
+

@@ -17,11 +17,13 @@ struct HomeView: View {
                 
                 VStack(alignment: .leading, spacing: Global.spacingMedium) {
                     VStack(alignment: .leading, spacing: Global.spacingMedium) {
-                        Text("Sala nova ou já rolando? Bora montar a playlist da festa com a galera!")
-                            .font(.headline)
+                        Text("Bora montar a playlist com a galera!")
+                            .font(.title2)
+                            .bold(true)
                             .foregroundColor(.white)
                             .padding(.top, Global.paddingTopTitle)
                             .padding(.horizontal)
+                            .padding(.bottom, Global.paddingBottomLarge)
                         HStack(spacing: Global.spacingXLarge) {
                             Button(action: { showCreateRoom = true }) {
                                 HStack {
