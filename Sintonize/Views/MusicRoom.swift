@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MusicaSala: View {
+struct MusicRoom: View {
     @State private var searchText: String = ""
     
     var body: some View {
@@ -58,5 +58,5 @@ struct MusicaSala: View {
 }
 
 #Preview {
-    MusicaSala()
+    MusicRoom()
 }

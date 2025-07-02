@@ -1,18 +1,20 @@
 import SwiftUI
 
 struct HomeView: View {
-    @Environment(\.managedObjectContext) var moc
+//    @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var parties: FetchedResults<Party>
     @StateObject private var viewModel = HomeViewModel()
     @State private var showCreateRoom = false
     @State private var showJoinRoom = false
     @State private var selectedRoom: Room? = nil
     
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 Color(.systemBackground)
                     .ignoresSafeArea()
+                
                 VStack(alignment: .leading, spacing: Global.spacingMedium) {
                     VStack(alignment: .leading, spacing: Global.spacingMedium) {
                         Text("Sala nova ou já rolando? Bora montar a playlist da festa com a galera!")
@@ -49,38 +51,19 @@ struct HomeView: View {
                         .padding(.horizontal)
                     }
                     .padding(.bottom, Global.spacingXXLarge)
-                    VStack(alignment: .leading, spacing: Global.spacingSmall) {
-                        Text("Histórico")
-                            .font(.title2)
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding(.horizontal)
-                            .padding(.top, Global.spacingMedium)
-                        ForEach(viewModel.rooms) { room in
-                            Button(action: { selectedRoom = room }) {
-                                HStack {
-                                    VStack(alignment: .leading) {
-                                        Text(room.name)
-                                            .font(.headline)
-                                            .foregroundColor(.white)
-                                        Text(room.date, style: .date)
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
-                                    }
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.newOrange)
+                    
+                    Section {
+                        List {
+                            ForEach(parties) { party in
+                                NavigationLink(value: party){
+                                    Text(party.partyName ?? "")
                                 }
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .cornerRadius(Global.cornerRadiusMedium)
                             }
-                            .buttonStyle(.plain)
-                            .padding(.horizontal)
-                            .padding(.vertical, Global.spacingSmall)
                         }
+                    } header: {
+                        Text("Historico")
+                            .padding()
                     }
-                    Spacer()
                 }
             }
             .navigationTitle("")
@@ -90,12 +73,10 @@ struct HomeView: View {
             .sheet(isPresented: $showJoinRoom) {
                 JoinRoomView()
             }
-            .background(
-                NavigationLink(destination: RoomView(room: selectedRoom ?? viewModel.rooms.first!), isActive: Binding(get: { selectedRoom != nil }, set: { if !$0 { selectedRoom = nil } })) {
-                    EmptyView()
-                }
-                .hidden()
-            )
+            .navigationDestination(for: Party.self) { party in
+                RoomView(party: party)
+            }
+            
         }
     }
 }

@@ -1,21 +1,21 @@
 import SwiftUI
 
 struct MusicListItem: View {
-    let music: Music
+    let music: MusicItem
     let onVote: () -> Void
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: Global.spacingSmall) {
-                Text(music.name)
+                Text(music.musicName ?? "")
                     .font(.headline)
-                Text(music.artist)
+                Text(music.musicArtist ?? "")
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
             Spacer()
             HStack(spacing: Global.hStackSpacing) {
-                Text("\(music.votes)")
+                Text("\(music.likes)")
                     .font(.subheadline)
                 Button(action: onVote) {
                     Image(systemName: "heart.fill")
@@ -32,7 +32,3 @@ struct MusicListItem: View {
         .cornerRadius(Global.cornerRadiusLarge)
     }
 }
-
-#Preview {
-    MusicListItem(music: Music(id: UUID(), name: "Pra Ver Se Cola", artist: "Larissa Manoela", votes: 10), onVote: {})
-} 
