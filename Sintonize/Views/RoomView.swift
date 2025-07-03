@@ -53,6 +53,7 @@ struct RoomView: View {
         }
         .background(Color(.systemBackground))
         .ignoresSafeArea(edges: .bottom)
+        .hideKeyboardOnTap()
         .overlay(
             ConfirmEndRoomModal(isPresented: $viewModel.showEndRoomAlert, onConfirm: {}, onCancel: { viewModel.showEndRoomAlert = false })
         )

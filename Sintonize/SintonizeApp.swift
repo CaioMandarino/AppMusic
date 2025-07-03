@@ -11,7 +11,7 @@ import SwiftUI
 struct SintonizeApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            MusicRoom()
                 .tint(.newOrange)
         }
     }

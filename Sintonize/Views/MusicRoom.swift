@@ -12,6 +12,7 @@ import SwiftUI
 struct MusicRoom: View {
     @State private var searchText: String = ""
     @State private var musicList: [Music] = []
+    @State private var selectedMusics: [Music] = []
     
     var body: some View {
         
@@ -19,40 +20,53 @@ struct MusicRoom: View {
             VStack{
                 
                 Search(searchText: $searchText)
+                    .padding(.top, 8)
                 
                 if musicList.isEmpty {
                     NoMusicList()
                 } else {
                     List {
                         ForEach(musicList) { music in
-                            HStack {
+                            HStack(spacing: 12) {
                                 AsyncImage(url: music.imageURL) { image in
                                     image
                                         .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 50, height: 50)
-                                    
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 56, height: 56)
+                                        .cornerRadius(8)
                                 } placeholder: {
                                     ProgressView()
-                                        .frame(width: 50, height: 50)
+                                        .frame(width: 56, height: 56)
                                 }
-                                
-                                VStack{
+                                VStack(alignment: .leading, spacing: 4) {
                                     Text(music.name)
                                         .font(.headline)
                                     Text(music.artist)
-                                        .foregroundStyle(.secondary)
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
                                 }
+                                Spacer()
+                                Button(action: {
+                                    if !selectedMusics.contains(where: { $0.id == music.id }) {
+                                        selectedMusics.append(music)
+                                    }
+                                }) {
+                                    Image(systemName: selectedMusics.contains(where: { $0.id == music.id }) ? "checkmark.circle.fill" : "plus.circle.fill")
+                                        .foregroundColor(selectedMusics.contains(where: { $0.id == music.id }) ? .green : .newOrange)
+                                        .font(.title2)
+                                }
+                                .buttonStyle(.plain)
                             }
+                            .padding(.vertical, 4)
                         }
                         .onDelete(perform: deleteMusic)
-                        
                     }
+                    .listStyle(.plain)
                 }
                 
                 Spacer()
             }
-            
+            .hideKeyboardOnTap()
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {

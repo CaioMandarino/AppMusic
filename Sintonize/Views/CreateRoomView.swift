@@ -7,16 +7,19 @@ struct CreateRoomView: View {
     
     var body: some View {
         NavigationStack {
-            Form {
-                Section(header: Text("Nome da sala")) {
-                    TextField("Digite o nome da sala", text: $roomName)
-                }
-                Section(header: Text("Data da festa")) {
-                    DatePicker("", selection: $date, displayedComponents: .date)
-                        .datePickerStyle(.compact)
-                        .accentColor(.newOrange)
+            VStack {
+                Form {
+                    Section(header: Text("Nome da sala")) {
+                        TextField("Digite o nome da sala", text: $roomName)
+                    }
+                    Section(header: Text("Data da festa")) {
+                        DatePicker("", selection: $date, displayedComponents: .date)
+                            .datePickerStyle(.compact)
+                            .accentColor(.newOrange)
+                    }
                 }
             }
+            .hideKeyboardOnTap()
             .navigationTitle("Criar Sala")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

@@ -53,6 +53,7 @@ struct JoinRoomView: View {
                         .foregroundColor(.newOrange)
                 }
             }
+            .hideKeyboardOnTap()
         }
     }
 }

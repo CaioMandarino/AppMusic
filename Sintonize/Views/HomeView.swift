@@ -96,6 +96,7 @@ struct HomeView: View {
                 }
                 .hidden()
             )
+            .hideKeyboardOnTap()
         }
     }
 }
