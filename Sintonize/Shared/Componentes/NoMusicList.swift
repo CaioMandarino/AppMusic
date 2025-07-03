@@ -10,7 +10,6 @@ import SwiftUI
 
 struct NoMusicList: View {
     var body: some View {
-        Spacer()
         VStack{
             Image(systemName: "magnifyingglass.circle")
                 .resizable()

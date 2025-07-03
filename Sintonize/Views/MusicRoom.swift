@@ -21,52 +21,29 @@ struct MusicRoom: View {
                 Search(searchText: $searchText)
                     .padding(.top, 8)
                 
-                if musicList.isEmpty {
+                Spacer()
+
+                if searchText.isEmpty {
                     NoMusicList()
+                    Spacer()
                 } else {
+                    
+                    if musicList.isEmpty {
+                        ProgressView()
+                            .padding(.top)
+                            .scaleEffect(1.4)
+                    }
+                    
                     List {
                         ForEach(musicList) { music in
-                            HStack(spacing: 12) {
-                                AsyncImage(url: music.imageURL) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 56, height: 56)
-                                        .cornerRadius(8)
-                                } placeholder: {
-                                    ProgressView()
-                                        .frame(width: 56, height: 56)
-                                }
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(music.name)
-                                        .font(.headline)
-                                    Text(music.artist)
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
-                                Spacer()
-                                Button(action: {
-                                    if !selectedMusics.contains(where: { $0.id == music.id }) {
-                                        selectedMusics.append(music)
-                                        
-                                    }
-                                }) {
-                                    Image(systemName: selectedMusics.contains(where: { $0.id == music.id }) ? "checkmark.circle.fill" : "plus.circle.fill")
-                                        .foregroundColor(selectedMusics.contains(where: { $0.id == music.id }) ? .green : .newOrange)
-                                        .font(.title2)
-                                }
-                                .buttonStyle(.plain)
-                            }
-                            .padding(.vertical, 4)
+                            MusicListRow(music: music, selectedMusics: $selectedMusics)
+                                .padding(.vertical, 4)
                         }
                         .onDelete(perform: deleteMusic)
                     }
                     .listStyle(.plain)
                 }
-                
-                Spacer()
             }
-            .hideKeyboardOnTap()
             .toolbar{
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -87,6 +64,9 @@ struct MusicRoom: View {
                     await fetchMusic()
                 }
                 
+            }
+            .task {
+                await fetchMusic() // so para carregar mais rapido
             }
             
             .navigationTitle(Text("15 da Raquel"))
@@ -109,7 +89,7 @@ struct MusicRoom: View {
             do {
                 let result = try await request.response()
                 self.musicList = result.songs.compactMap { song in
-                    return Music(name: song.title, artist: song.artistName, imageURL: song.artwork?.url(width: 50, height: 50))
+                    return Music(name: song.title, artist: song.artistName, imageURL: song.artwork?.url(width: 150, height: 150))
                 }
                 
             } catch {
