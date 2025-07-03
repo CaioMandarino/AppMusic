@@ -7,6 +7,8 @@ struct CreateRoomView: View {
     @State private var partyName: String = ""
     @State private var partyDate: Date = Date()
 
+    
+
     var body: some View {
         NavigationStack {
             Form {
@@ -15,11 +17,19 @@ struct CreateRoomView: View {
                 }
                 .tint(.newOrange)
                 
-                Section(header: Text("Data da festa")) {
-                    DatePicker("", selection: $partyDate, displayedComponents: .date)
-                        .datePickerStyle(.compact)
+                
+                Section(header: Text("Data da festa")){
+                    HStack {
+                        DatePicker(
+                            "",
+                            selection: $partyDate,
+                            displayedComponents: .date
+                        )
+                        .datePickerStyle(.wheel)
                         .accentColor(.newOrange)
+                    }
                 }
+                
             }
             .navigationTitle("Criar Sala")
             .navigationBarTitleDisplayMode(.inline)
@@ -36,7 +46,8 @@ struct CreateRoomView: View {
                         party.partyName = partyName
                         party.partyDate = partyDate
                         party.id = UUID()
-
+                        
+                        try? moc.save()
                         dismiss()
                     }
                     .disabled(partyName.isEmpty)

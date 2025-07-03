@@ -16,14 +16,23 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 
                 VStack(alignment: .leading, spacing: Global.spacingMedium) {
-                    VStack(alignment: .leading, spacing: Global.spacingMedium) {
-                        Text("Bora montar a playlist com a galera!")
+                    VStack(alignment: .center, spacing: Global.spacingMedium) {
+                        
+                        Text("Sala nova ou já rolando? ")
+                            .multilineTextAlignment(.center)
                             .font(.title2)
                             .bold(true)
                             .foregroundColor(.primary)
                             .padding(.top, Global.paddingTopTitle)
+                        
+                        Text("Monte a playlist da festa com a galera!")
+                            .multilineTextAlignment(.center)
+                            .font(.headline)
+                            .bold(true)
+                            .foregroundColor(.gray)
                             .padding(.horizontal)
                             .padding(.bottom, Global.paddingBottomLarge)
+                        
                         HStack(spacing: Global.spacingXLarge) {
                             Button(action: { showCreateRoom = true }) {
                                 HStack {
@@ -63,9 +72,10 @@ struct HomeView: View {
                             }
                         }
                     } header: {
-                        Text("Historico")
-                            .padding()
+                        Text("Histórico")
+                            .font(.title)
                             .bold()
+                            .padding()
                     }
                 }
             }
