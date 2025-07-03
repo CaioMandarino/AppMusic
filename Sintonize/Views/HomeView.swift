@@ -20,7 +20,7 @@ struct HomeView: View {
                         Text("Bora montar a playlist com a galera!")
                             .font(.title2)
                             .bold(true)
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                             .padding(.top, Global.paddingTopTitle)
                             .padding(.horizontal)
                             .padding(.bottom, Global.paddingBottomLarge)
@@ -65,6 +65,7 @@ struct HomeView: View {
                     } header: {
                         Text("Historico")
                             .padding()
+                            .bold()
                     }
                 }
             }

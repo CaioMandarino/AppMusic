@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RoomView: View {
-    let party: Party
+    @ObservedObject var party: Party
     @Environment(\.managedObjectContext) var moc
     @State var showSheet = false
     
@@ -28,3 +28,9 @@ struct RoomView: View {
         }
     }
 }
+
+//#Preview {
+//    let config = NSConfigur
+//    let container = NSPersistentContainer()
+//    RoomView(party: )
+//}

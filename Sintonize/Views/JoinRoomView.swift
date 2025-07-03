@@ -54,6 +54,7 @@ struct JoinRoomView: View {
                 }
             }
         }
+        .tint(.newOrange)
     }
 }
 
