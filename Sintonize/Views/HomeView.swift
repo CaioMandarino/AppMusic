@@ -6,7 +6,6 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @State private var showCreateRoom = false
     @State private var showJoinRoom = false
-    @State private var selectedRoom: Room? = nil
     
     
     var body: some View {
@@ -66,11 +65,39 @@ struct HomeView: View {
                     Section {
                         List {
                             ForEach(parties) { party in
-                                NavigationLink(value: party){
-                                    Text(party.partyName ?? "")
+                                ZStack {
+                                    HStack {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(party.partyName ?? "")
+                                                .font(.headline)
+                                                .foregroundColor(.primary)
+
+                                            Text("03 de Jul. de 2025")
+                                                .font(.subheadline)
+                                                .foregroundColor(.secondary)
+                                        }
+
+                                        Spacer()
+                                        
+                                         Image(systemName: "chevron.right")
+                                             .foregroundColor(.newOrange)
+                                    }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color(.systemGray6))
+                                    .cornerRadius(12)
+                                    .contentShape(Rectangle())
+
+                                    NavigationLink(value: party) {
+                                        EmptyView()
+                                    }
+                                    .opacity(0)
                                 }
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.clear)
                             }
                         }
+                        .listStyle(.plain)
                     } header: {
                         Text("Histórico")
                             .font(.title)
