@@ -11,6 +11,7 @@ struct RoomView: View {
                 ForEach(party.musicArray) { music in
                     MusicListItem(music: music) {
                         music.likes += 1
+                        try? moc.save()
                     }
                 }
             }
@@ -24,7 +25,7 @@ struct RoomView: View {
         }
         .navigationTitle(Text(party.partyName ?? ""))
         .sheet(isPresented: $showSheet) {
-            MusicRoom()
+            MusicRoom(party: party)
         }
     }
 }

@@ -10,6 +10,8 @@ import SwiftUI
 
 
 struct MusicRoom: View {
+    @ObservedObject var party: Party
+    @Environment(\.managedObjectContext) private var moc
     @State private var searchText: String = ""
     @State private var musicList: [Music] = []
     @State private var selectedMusics: [Music] = []
@@ -21,7 +23,20 @@ struct MusicRoom: View {
                 Search(searchText: $searchText)
                     .padding(.top, 8)
                 
-                Spacer()
+                if !selectedMusics.isEmpty {
+                    Text("Músicas Salvas")
+                        .font(.headline)
+                        .padding(.top)
+
+                    List {
+                        ForEach(selectedMusics) { music in
+                            MusicListRow(music: music, selectedMusics: $selectedMusics)
+                                .padding(.vertical, 4)
+                        }
+                    }
+                    .listStyle(.plain)
+                }
+                                Spacer()
 
                 if searchText.isEmpty {
                     NoMusicList()
@@ -33,11 +48,25 @@ struct MusicRoom: View {
                             .padding(.top)
                             .scaleEffect(1.4)
                     }
-                    
                     List {
                         ForEach(musicList) { music in
-                            MusicListRow(music: music, selectedMusics: $selectedMusics)
-                                .padding(.vertical, 4)
+                            MusicListRow(music: music, selectedMusics: $selectedMusics, onSave: { music in
+                                let newItem = MusicItem(context: moc)
+                                newItem.id = UUID()
+                                newItem.musicName = music.name
+                                newItem.musicArtist = music.artist
+                                newItem.imageURL = music.imageURL?.absoluteString
+                                newItem.likes = 0
+
+                                party.addToMusics(newItem)
+
+                                do {
+                                    try moc.save()
+                                } catch {
+                                    print("Erro ao salvar MusicItem: \(error)")
+                                }
+                            })
+                            .padding(.vertical, 4)
                         }
                         .onDelete(perform: deleteMusic)
                     }
@@ -69,7 +98,7 @@ struct MusicRoom: View {
                 await fetchMusic() // so para carregar mais rapido
             }
             
-            .navigationTitle(Text("15 da Raquel"))
+            .navigationTitle(Text(party.partyName ?? ""))
         }
     }
     
@@ -100,6 +129,6 @@ struct MusicRoom: View {
     }
 }
 
-#Preview {
-    MusicRoom()
-}
+//#Preview {
+//    MusicRoom()
+//}

@@ -10,6 +10,7 @@ import SwiftUI
 struct MusicListRow: View {
     let music: Music
     @Binding var selectedMusics: [Music]
+    var onSave: ((Music) -> Void)? = nil
     
     var body: some View {
         HStack(spacing: 12) {
@@ -34,6 +35,7 @@ struct MusicListRow: View {
             Button(action: {
                 if !selectedMusics.contains(where: { $0.id == music.id }) {
                     selectedMusics.append(music)
+                    onSave?(music)
                     
                 }
             }) {
