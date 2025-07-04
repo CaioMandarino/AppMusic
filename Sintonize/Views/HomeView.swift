@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct HomeView: View {
-//    @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var parties: FetchedResults<Party>
     @StateObject private var viewModel = HomeViewModel()
     @State private var showCreateRoom = false
     @State private var showJoinRoom = false
+    
+    @Environment(\.managedObjectContext) var moc
     
     
     var body: some View {
@@ -96,6 +97,7 @@ struct HomeView: View {
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.clear)
                             }
+                            .onDelete(perform: deleteParty)
                         }
                         .listStyle(.plain)
                     } header: {
@@ -117,6 +119,18 @@ struct HomeView: View {
                 RoomView(party: party)
             }
             
+        }
+    }
+    private func deleteParty(at offsets: IndexSet) {
+        for index in offsets {
+            let partyToDelete = parties[index]
+            moc.delete(partyToDelete)
+        }
+
+        do {
+            try moc.save()
+        } catch {
+            print("Erro ao deletar: \(error)")
         }
     }
 }
