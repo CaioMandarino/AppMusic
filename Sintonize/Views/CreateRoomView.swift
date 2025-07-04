@@ -28,7 +28,8 @@ struct CreateRoomView: View {
                             DatePicker(
                                 "",
                                 selection: $partyDate,
-                                displayedComponents: .date
+                                in: Date()...Date().addingTimeInterval(60*60*24*365) // um ano
+                                ,displayedComponents: .date
                             )
                             .datePickerStyle(.wheel)
                             .accentColor(.newOrange)

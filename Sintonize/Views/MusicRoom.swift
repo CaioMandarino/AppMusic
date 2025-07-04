@@ -47,9 +47,16 @@ struct MusicRoom: View {
                                 newItem.imageURL = music.imageURL?.absoluteString
                                 newItem.likes = 0
                                 newItem.musicVoted = false
-
+                                
+                                for music in party.musicArray {
+                                    if music.musicName == newItem.musicName {
+                                        moc.delete(newItem)
+                                        music.likes += 1
+                                    }
+                                }
+                                
                                 party.addToMusics(newItem)
-
+                            
                                 do {
                                     try moc.save()
                                 } catch {

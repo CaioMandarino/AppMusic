@@ -5,7 +5,6 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @State private var showCreateRoom = false
     @State private var showJoinRoom = false
-    
     @Environment(\.managedObjectContext) var moc
     
     
@@ -73,7 +72,7 @@ struct HomeView: View {
                                                 .font(.headline)
                                                 .foregroundColor(.primary)
 
-                                            Text("04 do mes")
+                                            Text(party.partyDate?.formatted(date: .long, time: .omitted) ?? Date.now.formatted(date: .long, time: .omitted))
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
                                         }
@@ -101,7 +100,7 @@ struct HomeView: View {
                         }
                         .listStyle(.plain)
                     } header: {
-                        Text("Histórico")
+                        Text("Histórico de Festas")
                             .font(.title)
                             .bold()
                             .padding()
