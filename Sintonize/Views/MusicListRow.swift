@@ -10,8 +10,8 @@ import SwiftUI
 struct MusicListRow: View {
     
     let music: Music
-    @Binding var selectedMusics: [Music]
-    var onSave: ((Music) -> Void)? = nil
+    var onSave: ((Music) -> Void)
+    @State var showCheckmark: Bool = false
     
     var body: some View {
         HStack(spacing: 12) {
@@ -33,17 +33,17 @@ struct MusicListRow: View {
                     .foregroundColor(.gray)
             }
             Spacer()
-            Button(action: {
-                if !selectedMusics.contains(where: { $0.id == music.id }) {
-                    selectedMusics.append(music)
-                    onSave?(music)
-                    
-                }
-            }) {
-                Image(systemName: selectedMusics.contains(where: { $0.id == music.id }) ? "checkmark.circle.fill" : "plus.circle.fill")
-                    .foregroundColor(selectedMusics.contains(where: { $0.id == music.id }) ? .green : .newOrange)
+            
+            Button {
+                showCheckmark = true
+                onSave(music)
+            }
+            label: {
+                Image(systemName: showCheckmark ? "checkmark.circle.fill" : "plus.circle.fill" ) // : ""
+                    .foregroundColor(showCheckmark ? .green : .newOrange) // selectedMusics.contains(where: { $0.id == music.id }) ? .green :
                     .font(.title2)
             }
+            
             .buttonStyle(.plain)
         }
     }

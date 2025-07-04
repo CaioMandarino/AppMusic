@@ -39,13 +39,14 @@ struct MusicRoom: View {
                     }
                     List {
                         ForEach(musicList) { music in
-                            MusicListRow(music: music, selectedMusics: $selectedMusics, onSave: { music in
+                            MusicListRow(music: music, onSave: { music in
                                 let newItem = MusicItem(context: moc)
                                 newItem.id = UUID()
                                 newItem.musicName = music.name
                                 newItem.musicArtist = music.artist
                                 newItem.imageURL = music.imageURL?.absoluteString
                                 newItem.likes = 0
+                                newItem.musicVoted = false
 
                                 party.addToMusics(newItem)
 
@@ -54,23 +55,15 @@ struct MusicRoom: View {
                                 } catch {
                                     print("Erro ao salvar MusicItem: \(error)")
                                 }
-                                
-                                dismiss()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                                    dismiss()
+                                }
                             })
                             .padding(.vertical, 4)
                         }
                         .onDelete(perform: deleteMusic)
                     }
                     .listStyle(.plain)
-                }
-            }
-            .toolbar{
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        
-                    }){
-                        Image("OutSymbol")
-                    }
                 }
             }
 

@@ -7,6 +7,7 @@
         <attribute name="musicArtist" optional="YES" attributeType="String"/>
         <attribute name="musicDuraction" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="musicName" optional="YES" attributeType="String"/>
+        <attribute name="musicVoted" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="party" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Party" inverseName="musics" inverseEntity="Party"/>
         <uniquenessConstraints>
             <uniquenessConstraint>

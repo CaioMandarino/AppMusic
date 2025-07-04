@@ -73,7 +73,7 @@ struct HomeView: View {
                                                 .font(.headline)
                                                 .foregroundColor(.primary)
 
-                                            Text("03 de Jul. de 2025")
+                                            Text("04 do mes")
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
                                         }

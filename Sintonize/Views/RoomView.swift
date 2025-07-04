@@ -10,7 +10,15 @@ struct RoomView: View {
             List {
                 ForEach(party.musicArray) { music in
                     MusicListItem(music: music) {
-                        music.likes += 1
+                        
+                        if music.musicVoted {
+                            music.likes -= 1
+                        } else {
+                            music.likes += 1
+                        }
+                        
+                        music.musicVoted.toggle()
+                        
                         try? moc.save()
                     }
                 }
