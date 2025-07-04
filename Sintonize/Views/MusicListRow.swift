@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MusicListRow: View {
+    
     let music: Music
     @Binding var selectedMusics: [Music]
     var onSave: ((Music) -> Void)? = nil

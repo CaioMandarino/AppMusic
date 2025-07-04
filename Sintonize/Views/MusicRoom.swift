@@ -12,6 +12,8 @@ import SwiftUI
 struct MusicRoom: View {
     @ObservedObject var party: Party
     @Environment(\.managedObjectContext) private var moc
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var searchText: String = ""
     @State private var musicList: [Music] = []
     @State private var selectedMusics: [Music] = []
@@ -22,21 +24,8 @@ struct MusicRoom: View {
             VStack{
                 Search(searchText: $searchText)
                     .padding(.top, 8)
-                
-                if !selectedMusics.isEmpty {
-                    Text("Músicas Salvas")
-                        .font(.headline)
-                        .padding(.top)
-
-                    List {
-                        ForEach(selectedMusics) { music in
-                            MusicListRow(music: music, selectedMusics: $selectedMusics)
-                                .padding(.vertical, 4)
-                        }
-                    }
-                    .listStyle(.plain)
-                }
-                                Spacer()
+                    
+                    Spacer()
 
                 if searchText.isEmpty {
                     NoMusicList()
@@ -65,6 +54,8 @@ struct MusicRoom: View {
                                 } catch {
                                     print("Erro ao salvar MusicItem: \(error)")
                                 }
+                                
+                                dismiss()
                             })
                             .padding(.vertical, 4)
                         }
