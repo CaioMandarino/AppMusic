@@ -23,7 +23,7 @@ extension Party {
     
     public var musicArray: [MusicItem] {
         let musicSet: Set<MusicItem> = musics as? Set<MusicItem> ?? []
-        return musicSet.sorted { $0.id > $1.id }
+        return musicSet.sorted { $0.likes > $1.likes }
     }
     
 }

@@ -7,22 +7,7 @@ struct RoomView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(party.musicArray) { music in
-                    MusicListItem(music: music) {
-                        
-                        if music.musicVoted {
-                            music.likes -= 1
-                        } else {
-                            music.likes += 1
-                        }
-                        
-                        music.musicVoted.toggle()
-                        
-                        try? moc.save()
-                    }
-                }
-            }
+            ListMusicsView(for: party)
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing){
