@@ -45,7 +45,7 @@ struct MusicRoom: View {
                                 newItem.musicName = music.name
                                 newItem.musicArtist = music.artist
                                 newItem.imageURL = music.imageURL?.absoluteString
-                                newItem.likes = 0
+                                newItem.likes = 0 
                                 newItem.musicVoted = false
                                 
                                 for music in party.musicArray {
